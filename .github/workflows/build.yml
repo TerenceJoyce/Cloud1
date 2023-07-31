@@ -27,10 +27,10 @@ jobs:
         
       - name: Build Docker image
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
-          context: Cloud1
-          file: Dockerfile
+          context: ./Cloud1
+          file: ./Cloud1/Dockerfile
           push: true
           load: false
           tags: |
