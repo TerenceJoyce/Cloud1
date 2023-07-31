@@ -5,7 +5,7 @@ Module Program
     Sub Main(args As String())
         Console.WriteLine("Application start")
         Do
-            Console.WriteLine("Hello World!")
+            Console.WriteLine("Hello World davide2!")
             Threading.Thread.Sleep(1000)
         Loop Until False
         Console.WriteLine("Application end")
