@@ -9,9 +9,9 @@ Module UdpReceiver
         Dim RemotePort As Integer = 2010 ' Porta UDP sulla quale trasmettere i dati
         Dim udpClient As New UdpClient(LocalPort)
 
-        Console.WriteLine("In attesa di messaggi UDP...")
+    Console.WriteLine("In attesa di messaggi UDP2...")
 
-        Try
+    Try
             While True
                 ' Riceve dati UDP e ottiene l'indirizzo IP e la porta del mittente
                 Dim remoteEP As IPEndPoint = New IPEndPoint(IPAddress.Any, LocalPort)
