@@ -6,6 +6,7 @@ on:
       - master
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -36,4 +37,19 @@ jobs:
           tags: |
             ${{ steps.login-ecr.outputs.registry }}/cloud1:${{ github.sha }}
             ${{ steps.login-ecr.outputs.registry }}/cloud1:latest
-      
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan ${{ secrets.VPN_HOST }} >> ~/.ssh/known_hosts
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Copy file to remote machine
+        run: |
+          scp -o StrictHostKeyChecking=no deploy.sh ubuntu@${{ secrets.VPN_HOST }}:/home/ubuntu/cloud1-dep
+          ssh ubuntu@${{ secrets.VPN_HOST }} 'IMAGE_URL=${{ steps.login-ecr.outputs.registry }}/cloud1:${{ github.sha }} sh ./deploy.sh'
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}

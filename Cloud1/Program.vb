@@ -26,8 +26,8 @@ Module UdpReceiver
                 ' Modifica il messaggio e lo rispedisce al mittente
                 Dim replyMessage As String = "RX-" & message
                 Dim replyData As Byte() = Encoding.ASCII.GetBytes(replyMessage)
-                'udpClient.Send(replyData, replyData.Length, remoteEP)
-                udpClient.Send(replyData, replyData.Length, remoteEP.Address.ToString, 2010)
+                udpClient.Send(replyData, replyData.Length, remoteEP)
+                'udpClient.Send(replyData, replyData.Length, remoteEP.Address.ToString, 2010)
             End While
         Catch ex As Exception
             Console.WriteLine($"Errore: {ex.Message}")
