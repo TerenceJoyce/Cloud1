@@ -1,6 +1,8 @@
 !/bin/bash
 
 # Create the docker-compose.yml file
+mkdir -p cloud1-dep
+cd cloud1-dep
 cat > compose.yaml << EOF
 version: '3'
 
@@ -14,6 +16,6 @@ services:
 EOF
 
 echo "docker-compose.yml file has been generated with the following content:"
-cat docker-compose.yml
+cat compose.yaml
 docker-compose pull
 docker-compose up -d
