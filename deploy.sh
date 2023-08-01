@@ -1,7 +1,6 @@
 !/bin/bash
 
 # Create the docker-compose.yml file
-mkdir -p cloud1-dep
 cd cloud1-dep
 cat > compose.yaml << EOF
 version: '3'

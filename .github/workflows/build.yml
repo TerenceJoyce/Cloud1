@@ -49,8 +49,7 @@ jobs:
 
       - name: Copy file to remote machine
         run: |
-          ls -la
-          pwd
+          ssh ubuntu@${{ secrets.VPN_HOST }} 'mkdir -p cloud1-dep'  
           scp -o StrictHostKeyChecking=no deploy.sh ubuntu@${{ secrets.VPN_HOST }}:/home/ubuntu/cloud1-dep/deploy.sh
           ssh ubuntu@${{ secrets.VPN_HOST }} 'IMAGE_URL=${{ steps.login-ecr.outputs.registry }}/cloud1:${{ github.sha }} sh /home/ubuntu/cloud1-dep/deploy.sh'
         env:
